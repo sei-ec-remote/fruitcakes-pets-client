@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
+import LoadingScreen from '../shared/LoadingScreen'
 
 // api function from our api file
 import { getAllPets } from '../../api/pets'
@@ -45,7 +46,7 @@ const PetsIndex = (props) => {
 
     if (!pets) {
         // if no pets loaded yet, display 'loading'
-        return <p>...loading ...please wait</p>
+        return <LoadingScreen />
     } else if (pets.length === 0) {
         // otherwise if there ARE no pets, display that message
         return <p>No pets yet, go add some!</p>
