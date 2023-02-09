@@ -6,10 +6,17 @@ import { getOnePet, removePet, updatePet } from '../../api/pets'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
 import EditPetModal from './EditPetModal'
+import ShowToy from '../toys/ShowToy'
 
 // we need to get the pet's id from the route parameters
 // then we need to make a request to the api
 // when we retrieve a pet from the api, we'll render the data on the screen
+
+const toyCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 const ShowPet = (props) => {
     const [pet, setPet] = useState(null)
@@ -57,6 +64,18 @@ const ShowPet = (props) => {
             })
     }
 
+    let toyCards
+    if (pet) {
+        if (pet.toys.length > 0) {
+            toyCards = pet.toys.map(toy => (
+                <ShowToy
+                    key={toy.id} 
+                    toy={toy}
+                />
+            ))
+        }
+    }
+
     if(!pet) {
         return <LoadingScreen />
     }
@@ -100,6 +119,9 @@ const ShowPet = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container className="m-2" style={toyCardContainerLayout}>
+                {toyCards}
             </Container>
             <EditPetModal 
                 user={user}
