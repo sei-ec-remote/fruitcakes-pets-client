@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react'
-
 // useParams from react-router-dom allows us to see our route parameters
 import { useParams, useNavigate } from 'react-router-dom'
-
 import { Container, Card, Button } from 'react-bootstrap'
-
-import { getOnePet, removePet } from '../../api/pets'
-
+import { getOnePet, removePet, updatePet } from '../../api/pets'
 import messages from '../shared/AutoDismissAlert/messages'
-
 import LoadingScreen from '../shared/LoadingScreen'
+import EditPetModal from './EditPetModal'
 
 // we need to get the pet's id from the route parameters
 // then we need to make a request to the api
@@ -17,6 +13,8 @@ import LoadingScreen from '../shared/LoadingScreen'
 
 const ShowPet = (props) => {
     const [pet, setPet] = useState(null)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -35,7 +33,7 @@ const ShowPet = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [updated])
 
     // here's where our removePet function will be called
     const setPetFree = () => {
@@ -85,6 +83,12 @@ const ShowPet = (props) => {
                             ?
                             <>
                                 <Button 
+                                    className="m-2" variant="warning"
+                                    onClick={() => setEditModalShow(true)}
+                                >
+                                    Edit {pet.name}
+                                </Button>
+                                <Button 
                                     className="m-2" variant="danger"
                                     onClick={() => setPetFree()}
                                 >
@@ -97,6 +101,15 @@ const ShowPet = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
+            <EditPetModal 
+                user={user}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+                updatePet={updatePet}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                pet={pet}
+            />
         </>
     )
 }

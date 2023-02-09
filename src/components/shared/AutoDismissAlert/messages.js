@@ -9,6 +9,8 @@ const messages = {
 	getPetsFailure: 'Failed to retrieve pets. Ruh-roh',
 	createPetSuccess: 'New pet has been created! Yay!',
 	createPetFailure: 'Failed to create new pet, please try again',
+	updatePetSuccess: 'Pet has been updated! Yay!',
+	updatePetFailure: 'Failed to update pet, please try again',
 	removePetSuccess: 'This pet has been set free!',
 	removePetFailure: 'Something went wrong, please try again'
 }
