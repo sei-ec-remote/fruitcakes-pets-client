@@ -13,6 +13,18 @@ export const getOnePet = (id) => {
 }
 
 // Create (create a pet)
+export const createPet = (user, newPet) => {
+    console.log('this is the user', user)
+    console.log('this is the newPet', newPet)
+    return axios({
+        url: `${apiUrl}/pets`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { pet: newPet }
+    })
+}
 
 // Update (update a pet)
 
