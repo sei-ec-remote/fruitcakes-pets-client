@@ -1,8 +1,13 @@
+import { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { deleteToy } from '../../api/toys'
+import EditToyModal from './EditToyModal'
 
 const ShowToy = (props) => {
     const { toy, user, pet, msgAlert, triggerRefresh } = props
+
+    // here's our hook to display the EditToyModal
+    const [editModalShow, setEditModalShow] = useState(false)
     // console.log('this is the toy in showToy', toy)
     // here, we're going to use react styling objects to our advantage
     // this will look at the toy's condition, and change the background color
@@ -59,6 +64,13 @@ const ShowToy = (props) => {
                         user && pet.owner && user._id === pet.owner._id
                         ?
                         <>
+                            <Button
+                                onClick={() => setEditModalShow(true)}
+                                variant="warning"
+                                className="m-2"
+                            >
+                                Edit Toy
+                            </Button>
                             <Button 
                                 onClick={() => destroyToy()} 
                                 variant="danger"
@@ -72,6 +84,15 @@ const ShowToy = (props) => {
                     }
                 </Card.Footer>
             </Card>
+            <EditToyModal
+                user={user}
+                pet={pet}
+                toy={toy}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={triggerRefresh}
+            />
         </>
     )
 }
