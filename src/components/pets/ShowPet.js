@@ -73,6 +73,10 @@ const ShowPet = (props) => {
                 <ShowToy
                     key={toy.id} 
                     toy={toy}
+                    user={user}
+                    pet={pet}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
                 />
             ))
         }

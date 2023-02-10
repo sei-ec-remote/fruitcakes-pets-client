@@ -26,6 +26,7 @@ export const updateToy = (user, petId, updatedToy) => {
 // DELETE
 // /toys/:petId/:toyId
 export const deleteToy = (user, petId, toyId) => {
+    // console.log('this the toyId', toyId)
     return axios({
         url: `${apiUrl}/toys/${petId}/${toyId}`,
         method: 'DELETE',
