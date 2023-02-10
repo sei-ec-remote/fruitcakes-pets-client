@@ -145,7 +145,6 @@ const ShowPet = (props) => {
                 pet={pet}
             />
             <NewToyModal 
-                user={user}
                 pet={pet}
                 show={toyModalShow}
                 handleClose={() => setToyModalShow(false)}

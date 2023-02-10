@@ -5,7 +5,7 @@ import { createToy } from '../../api/toys'
 import messages from '../shared/AutoDismissAlert/messages'
 
 const NewToyModal = (props) => {
-    const { user, pet, show, handleClose, msgAlert, triggerRefresh } = props
+    const { pet, show, handleClose, msgAlert, triggerRefresh } = props
 
     const [toy, setToy] = useState({})
 
