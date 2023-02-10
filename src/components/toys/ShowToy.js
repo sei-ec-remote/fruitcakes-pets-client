@@ -56,7 +56,7 @@ const ShowToy = (props) => {
                 <Card.Footer>
                     <small>Condition: {toy.condition}</small><br/>
                     {
-                        user && user._id === pet.owner._id
+                        user && pet.owner && user._id === pet.owner._id
                         ?
                         <>
                             <Button 

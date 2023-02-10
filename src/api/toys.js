@@ -23,6 +23,7 @@ export const updateToy = (user, petId, updatedToy) => {
         data: { toy: updatedToy }
     })
 }
+
 // DELETE
 // /toys/:petId/:toyId
 export const deleteToy = (user, petId, toyId) => {
